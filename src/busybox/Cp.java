@@ -4,11 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
-public class Cp{	
+public class Cp{
+	int times = 0;
 	public static void cp(String SOURCE,String DEST){
 		File root = new File(SOURCE);
 		File tar = new File(DEST);
+		if(Objects.equals(SOURCE, DEST)){
+			System.out.println("ERROR!");
+			return;
+		}
 		if(root.isDirectory()&&tar.isDirectory()){
 			String rname = root.getName();
 			tar = new File(tar,rname);

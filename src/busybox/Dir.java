@@ -10,6 +10,8 @@ public class Dir {
 	    	System.out.println("File exists");
 	    }else {
 	    	dir.mkdir();
+	    	if (dir.isDirectory()) System.out.println("创建成功");
+	    	else System.out.println("创建失败");
 	    }
 	}
 	
@@ -28,11 +30,12 @@ public class Dir {
 	    if(dir.exists()) {
 	    	if(isEmp(path)) {
 	    		dir.delete();
+				System.out.println("删除成功");
 	    	}else {
-	    		System.out.println("Directory not empty");
+	    		System.out.println("文件夹不为空");
 	    	}
 	    }else {
-	    	System.out.println("No such file or directory");
+	    	System.out.println("未找到该文件夹");
 	    }
 	        
 	}

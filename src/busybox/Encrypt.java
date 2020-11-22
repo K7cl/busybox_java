@@ -24,7 +24,7 @@ public class Encrypt {
     // 加解密统一使用的编码方式
     private final static String encoding = "utf-8";
     // 向量
-    private final static String iv = "01234567";
+    private final static String iv = "20194236";
     
     /**
      * 3DES加密
@@ -33,7 +33,7 @@ public class Encrypt {
      * @return
      * @throws Exception
      */
-    public static String encryptt(String plainText, String strKey) throws Exception {
+    public static String encryptt(String plainText, String strKey) throws Exception {//加密字符串
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(strKey.getBytes());
         SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
@@ -45,7 +45,7 @@ public class Encrypt {
         byte[] encryptData = cipher.doFinal(plainText.getBytes(encoding));
         return Base64.encode(encryptData);
     }
-    public static void encryptf(String file, String destFile, String strKey) throws Exception {
+    public static void encryptf(String file, String destFile, String strKey) throws Exception {//加密文件
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(strKey.getBytes());
         SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
@@ -74,7 +74,7 @@ public class Encrypt {
      * @return
      * @throws Exception
      */
-    public static String decryptt(String encryptText, String strKey) throws Exception {
+    public static String decryptt(String encryptText, String strKey) throws Exception {//解密字符串
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(strKey.getBytes());
         SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
@@ -87,7 +87,7 @@ public class Encrypt {
 
         return new String(decryptData, encoding);
     }
-    public static void decryptf(String file, String dest, String strKey) throws Exception {
+    public static void decryptf(String file, String dest, String strKey) throws Exception {//解密文件
         Key deskey = null;
         DESedeKeySpec spec = new DESedeKeySpec(strKey.getBytes());
         SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");

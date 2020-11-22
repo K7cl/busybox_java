@@ -16,8 +16,11 @@ public class Rm {
 	             }
 	         }
 	         dir.delete();
+	         if (tmp.length == 0){
+				 System.out.println("删除成功");
+			 }
 	     }else {
-	        	System.out.println("No such file or directory");
+	        	System.out.println("未找到该文件");
 	     }
 	 }
 
