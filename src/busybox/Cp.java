@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Cp{
-	int times = 0;
-	public static void cp(String SOURCE,String DEST){
-		File root = new File(SOURCE);
-		File tar = new File(DEST);
-		if(Objects.equals(SOURCE, DEST)){
+	/*
+	public static void cp(String oldpath, String newpath){
+		File root = new File(oldpath);
+		File tar = new File(newpath);
+		if(Objects.equals(oldpath, newpath)){
 			System.out.println("ERROR!");
 			return;
 		}
@@ -28,6 +28,7 @@ public class Cp{
 	}
 	
 	private static void cpr(File root,File tar){
+
 		File[] files = root.listFiles();
 		//对文件夹中的文件进行判断
 		for(File f : files){
@@ -40,28 +41,36 @@ public class Cp{
 				cpr(f,target);	//递归调用copy方法
 			}
 		}
-	}
+	}*/
 	
-	private static void cp(File f ,File t){
+	public static void cp(String oldpath,String newpath){
+		if(Objects.equals(oldpath, newpath)){
+			System.out.println("复制失败!\n两地址是相同的");
+			return;
+		}
+		File f = new File(oldpath);
+		File t = new File(newpath);
 		FileOutputStream fos = null;
 		FileInputStream fis = null;
 		try{
-			System.out.print("Copying..."+f.getName()+"--");
+			System.out.println("正在复制"+f.getName()+"...");
 			fis = new FileInputStream(f);
 			fos = new FileOutputStream(t);
 			int len = 0;
+			long startTime = System.currentTimeMillis();
 			byte[] buf = new byte[1024];
 			String rate = "";//用于记录已传输的文件大小
 			while((len=fis.read(buf))!=-1){
 				fos.write(buf,0,len);
-				for (int i=0;i<rate.length();i++){//消除之前的rate
+				long nowTime = System.currentTimeMillis();
+				long speed = t.length()/(nowTime-startTime);for (int i=0;i<rate.length();i++){//消除之前的rate
 					System.out.print("\b");
 				}
-				rate = (float)Math.round((t.length()*1.0/f.length())*1000)/10+"%";//更新rate
+				rate = ((float)Math.round((t.length()*1.0/f.length())*1000)/10+"%\t速度：" + speed + "kb/s");//更新rate
 				System.out.print(rate);
 			}
-			System.out.print("\b\b\b\b\b\b\b\b");
-			System.out.println("--finish.\n");
+			long endTime = System.currentTimeMillis();
+			System.out.println("\n复制完成，共用时" + (endTime-startTime) + "ms");
 		}catch(IOException e){
 			e.printStackTrace();
 		}finally{
@@ -73,8 +82,8 @@ public class Cp{
 				}
 			}
 			if(fos!=null){
-				try{	
-					fos.close();	
+				try{
+					fos.close();
 				}catch(IOException e){
 					e.printStackTrace();
 				}

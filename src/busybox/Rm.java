@@ -20,7 +20,7 @@ public class Rm {
 				 System.out.println("删除成功");
 			 }
 	     }else {
-	        	System.out.println("未找到该文件");
+	        	System.out.println("未找到该文件/文件夹");
 	     }
 	 }
 

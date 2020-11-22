@@ -11,7 +11,7 @@ public class Mv {
 				oldfile.renameTo(newfile);
 				System.out.println("移动成功");
 			}else{
-				System.out.println("未找到该文件");
+				System.out.println("未找到该文件/文件夹");
 			}
 	 	}
 	 }

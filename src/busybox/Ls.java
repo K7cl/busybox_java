@@ -14,7 +14,7 @@ public class Ls {
             }
         }
         else {
-        	System.out.println("No such file or directory");
+        	System.out.println("未找到该文件/文件夹");
         }
 	}
 	
