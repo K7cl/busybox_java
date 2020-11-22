@@ -9,45 +9,73 @@ public class CLI {
 	public static void main(String[] args) throws Exception {
 		Scanner s = new Scanner(System.in);
 //		System.out.println(System.getProperty("user.dir").replace("\\","/"));
-//		File directory = new File("");//设定为当前文件夹
+		File directory = new File("");//设定为当前文件夹
+		String nowpath = directory.getCanonicalPath();
 		String[] ss;
+		String arg1;
+		String arg2;
+		String arg3;
 		String cmd = "";
 		while (!Objects.equals(cmd, "exit")){
-			System.out.print(">");//获取标准的路径
+			System.out.print(nowpath + ">");//获取标准的路径
 			ss = s.nextLine().split(" ");
 			cmd = ss[0];
+			arg1 = "";
+			arg2 = "";
+			arg3 = "";
+			switch (ss.length) {
+			case 4:
+				arg3 = ss[3];
+				System.out.print("333");
+			case 3:
+				arg2 = ss[2];
+				System.out.print("222");
+			case 2:
+				arg1 = ss[1];
+				System.out.print("111");
+			}
+			
 			try {
 				switch (cmd) {
+					case "cd":
+						if (ss[1].equals("..")) {
+							nowpath = cdparent(nowpath);
+						}else if (ss[1].equals("global")) {
+							nowpath = "";
+						}else {
+							nowpath = ss[1];
+						}
+						break;
 					case "cp":
-						Cp.cp(ss[1], ss[2]);
+						Cp.cp(nowpath + "\\" + arg1, nowpath + "\\" + arg2);
 						break;
 					case "mkdir":
-						Dir.mkdir(ss[1]);
+						Dir.mkdir(nowpath + "\\" + arg1);
 						break;
 					case "rmdir":
-						Dir.rmdir(ss[1]);
+						Dir.rmdir(nowpath + "\\" + arg1);
 						break;
 					case "enc":
-						File enF = new File(ss[1]);
-						if (enF.exists()) Encrypt.encryptf(ss[1], ss[2], ss[3]);
-						else Encrypt.encryptt(ss[1], ss[2]);
+						File enF = new File(nowpath + "\\" + arg1);
+						if (enF.exists()) Encrypt.encryptf(nowpath + "\\" + arg1, nowpath + "\\" + arg2, arg3);
+						else Encrypt.encryptt(arg1, arg2);
 						break;
 					case "dec":
-						File deF = new File(ss[1]);
-						if (deF.exists()) Encrypt.decryptf(ss[1], ss[2], ss[3]);
-						else Encrypt.decryptt(ss[1], ss[2]);
+						File deF = new File(nowpath + "\\" + arg1);
+						if (deF.exists()) Encrypt.decryptf(nowpath + "\\" + arg1, nowpath + "\\" + arg2, arg3);
+						else Encrypt.decryptt(arg1, arg2);
 						break;
 					case "ls":
-						Ls.ls(ss[1]);
+						Ls.ls(nowpath + "\\" + arg1);
 						break;
 					case "mv":
-						Mv.mv(ss[1], ss[2]);
+						Mv.mv(nowpath + "\\" + arg1, nowpath + "\\" + arg2);
 						break;
 					case "rm":
-						Rm.rm(ss[1]);
+						Rm.rm(nowpath + "\\" + arg1);
 						break;
 					case "tree":
-						Tree.tree(ss[1]);
+						Tree.tree(nowpath + "\\" + arg1);
 						break;
 					default:
 						System.out.println("未知的命令，请输入正确格式");
@@ -57,24 +85,19 @@ public class CLI {
 				System.out.println("ERROR!");
 			}
 		}
-
-
-
-		// TODO 自动生成的方法存根
-		//System.out.println(repeatString(10));
-		//Tree.tree("F:\\PlantsVsZombies");
-		//Ls.ls("E:\\test");
-		//Ls.test();
-		//Dir.rmdir("E:\\test\\mkdair");
-		//Cp.cp("E:\\test\\1.txt","E:\\test\\3.txt");
-		/*
-		String cipher = Encrypt.encryptt("test123654", "thisisa3deskey11thisisa3");
-		System.out.println(cipher);
-		String text = Encrypt.decryptt(cipher, "thisisa3deskey11thisisa3");
-		System.out.println(text);
-		Encrypt.encryptf("E:\\test\\tp_p72_hmm_en.pdf","E:\\test\\5.txt", "thisisa3deskey11thisisa3");
-		Encrypt.decryptf("E:\\test\\5.txt","E:\\test\\44.pdf", "thisisa3deskey11thisisa3");
-		 */
+	}
+	private static String cdparent(String path) {
+		String[] paths = path.split("\\\\");
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < paths.length - 1; i++) {
+        	if (i == 0) {
+        		sb.append(paths[i]);
+        	}else {
+        		sb.append("\\" + paths[i]);
+        	}
+        }
+		String result = sb.substring(0, sb.length());
+		return result;
 	}
 	
 }
