@@ -85,6 +85,9 @@ public class CLI {
 						break;
 					case "help":
 						System.out.println("指令一览表：大部分指令遵循linux指令规则");
+						System.out.println("列出本帮助：help");
+						System.out.println("切换目录：cd path");
+						System.out.println("绝对路径模式：cd global");
 						System.out.println("复制：cp old_path new_path");
 						System.out.println("新建文件夹：mkdir path");
 						System.out.println("删除文件夹：rmdir path");
@@ -98,6 +101,9 @@ public class CLI {
 						System.out.println("移动：mv old_path new_path");
 						System.out.println("删除：rm path");
 						System.out.println("列出文件树：tree path");
+						System.out.println("");
+						System.out.println("支持使用grep来筛选ls的输出");
+						break;
 					default:
 						System.out.println("未知的命令，请输入正确格式");
 				}
