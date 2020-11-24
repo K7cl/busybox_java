@@ -43,7 +43,7 @@ public class CLI {
 			
 			try {
 				switch (cmd) {
-					case "cd":
+					case "cd"://
 						if (ss[1].equals("..")) {
 							nowpath = cdparent(nowpath);
 						}else if (ss[1].equals("global")) {
@@ -73,7 +73,7 @@ public class CLI {
 						break;
 					case "ls":
 						if (arg1.equals("-lt")) {
-							Ls.lst(nowpath + "\\" + arg2);
+							Ls.lsT(nowpath + "\\" + arg2);
 						}else if(arg1.equals("-lS")) {
 							Ls.lsS(nowpath + "\\" + arg2);
 						}else {
