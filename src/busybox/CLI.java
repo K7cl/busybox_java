@@ -63,7 +63,13 @@ public class CLI {
 						else Encrypt.decryptt(arg1, arg2);
 						break;
 					case "ls":
-						Ls.ls(nowpath + "\\" + arg1);
+						if (arg1.equals("-lt")) {
+							Ls.lst(nowpath + "\\" + arg2);
+						}else if(arg1.equals("-lS")) {
+							Ls.lsS(nowpath + "\\" + arg2);
+						}else {
+							Ls.ls(nowpath + "\\" + arg1);
+						}
 						break;
 					case "mv":
 						Mv.mv(nowpath + "\\" + arg1, nowpath + "\\" + arg2);
@@ -82,6 +88,7 @@ public class CLI {
 				System.out.println("ERROR!");
 			}
 		}
+		s.close();
 	}
 	private static String cdparent(String path) {
 		String[] paths = path.split("\\\\");
