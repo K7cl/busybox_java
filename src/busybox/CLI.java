@@ -72,13 +72,7 @@ public class CLI {
 						else Encrypt.decryptt(arg1, arg2);
 						break;
 					case "ls":
-						if (arg1.equals("-lt")) {
-							Ls.ls(nowpath + "\\" + arg2);
-						}else if(arg1.equals("-lS")) {
-							Ls.ls(nowpath + "\\" + arg2);
-						}else {
-							Ls.ls(nowpath + "\\" + arg1);
-						}
+						Ls.ls(nowpath + "\\" + arg2);
 						break;
 					case "mv":
 						Mv.mv(nowpath + "\\" + arg1, nowpath + "\\" + arg2);
@@ -94,20 +88,23 @@ public class CLI {
 						System.out.println("复制：cp old_path new_path");
 						System.out.println("新建文件夹：mkdir path");
 						System.out.println("删除文件夹：rmdir path");
-						System.out.println("加密：");
-						System.out.println("解密：");
-						System.out.println("列出文件（文件名排序）：");
-						System.out.println("列出文件（修改日期排序）：");
-						System.out.println("列出文件（大小排序）：");
-						System.out.println("移动：");
-						System.out.println("删除：");
-						System.out.println("列出文件树：");
+						System.out.println("加密文字：enc content key");
+						System.out.println("加密文件：enc input output key");
+						System.out.println("解密文字：dec ciphertext key");
+						System.out.println("解密文件：dec input output key");
+						System.out.println("列出文件（文件名排序）：ls -l");
+						System.out.println("列出文件（修改日期排序）：ls -lt");
+						System.out.println("列出文件（大小排序）：ls -lS");
+						System.out.println("移动：mv old_path new_path");
+						System.out.println("删除：rm path");
+						System.out.println("列出文件树：tree path");
 					default:
 						System.out.println("未知的命令，请输入正确格式");
 				}
 			}
 			catch (Exception e){
 				System.out.println("ERROR!");
+				System.out.println(e);
 			}
 		}
 		s.close();
