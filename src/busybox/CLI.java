@@ -5,12 +5,14 @@ import java.util.Scanner;
 import java.io.File;
 
 public class CLI {
+	public static String keyword = "";
 
 	public static void main(String[] args) throws Exception {
 		Scanner s = new Scanner(System.in);
-//		System.out.println(System.getProperty("user.dir").replace("\\","/"));
 		File directory = new File("");//设定为当前文件夹
 		String nowpath = directory.getCanonicalPath();
+		String[] gs;
+		String[] gr;
 		String[] ss;
 		String arg1;
 		String arg2;
@@ -18,7 +20,14 @@ public class CLI {
 		String cmd = "";
 		while (!Objects.equals(cmd, "exit")){
 			System.out.print(nowpath + ">");//获取标准的路径
-			ss = s.nextLine().split(" ");
+			gs = s.nextLine().split("\\|");
+			ss = gs[0].split(" ");
+			try {
+				gr = gs[1].split(" ");
+				if (gr[1].equals("grep")) {
+					keyword = gr[2];
+				}
+			}catch(Exception e) {}
 			cmd = ss[0];
 			arg1 = "";
 			arg2 = "";
@@ -102,6 +111,11 @@ public class CLI {
         }
 		String result = sb.substring(0, sb.length());
 		return result;
+	}
+	public static void print(String text) {
+		if (text.contains(keyword)) {
+			System.out.println(text);
+		}
 	}
 	
 }

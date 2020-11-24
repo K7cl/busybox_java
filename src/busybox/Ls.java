@@ -8,31 +8,31 @@ import java.util.Date;
 public class Ls {
 
 	public static void ls(String path) {
-		//System.out.println(path);
+		//CLI.print(path);
 		File file =new File(path);
         if(file.exists() || file.isDirectory()){//判断文件是否存在
             File[] listFiles =file.listFiles();//获取文件下的子文件
             for (File f : listFiles) {
-                System.out.println(f.getName());
+                CLI.print(f.getName());
             }
         }
         else {
-        	System.out.println("未找到该文件/文件夹");
+        	CLI.print("未找到该文件/文件夹");
         }
 	}
 	
 	public static void lst(String path) {
-		//System.out.println(path);
+		//CLI.print(path);
 		File file =new File(path);
         if(file.exists() || file.isDirectory()){//判断文件是否存在
             File[] listFiles =file.listFiles();//获取文件下的子文件
     		Arrays.sort(listFiles, new CompratorByLastModified());
     		for (int i = 0; i < listFiles.length; i++) {
-    			System.out.println(listFiles[i].getName()+"\t\t\t"+new Date(listFiles[i].lastModified()));
+    			CLI.print(listFiles[i].getName()+"\t\t\t"+new Date(listFiles[i].lastModified()));
     		}
         }
         else {
-        	System.out.println("未找到该文件/文件夹");
+        	CLI.print("未找到该文件/文件夹");
         }
 	}
 	static class CompratorByLastModified implements Comparator<File> {
@@ -51,17 +51,17 @@ public class Ls {
 	}
 	
 	public static void lsS(String path) {
-		//System.out.println(path);
+		//CLI.print(path);
 		File file =new File(path);
         if(file.exists() || file.isDirectory()){//判断文件是否存在
             File[] listFiles =file.listFiles();//获取文件下的子文件
     		Arrays.sort(listFiles, new CompratorBySize());
     		for (int i = 0; i < listFiles.length; i++) {
-    			System.out.println(listFiles[i].getName()+"\t\t\t"+listFiles[i].length());
+    			CLI.print(listFiles[i].getName()+"\t\t\t"+listFiles[i].length());
     		}
         }
         else {
-        	System.out.println("未找到该文件/文件夹");
+        	CLI.print("未找到该文件/文件夹");
         }
 	}
 	static class CompratorBySize implements Comparator<File> {
@@ -80,7 +80,7 @@ public class Ls {
 	}
 	
 	public static void test() {
-		System.out.println("TEST OK!");
+		CLI.print("TEST OK!");
 	}
 
 }
