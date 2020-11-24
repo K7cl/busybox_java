@@ -5,6 +5,9 @@ import java.util.Scanner;
 import java.io.File;
 
 public class CLI {
+	public static String arg1;
+	public static String arg2;
+	public static String arg3;
 	public static String keyword = "";
 
 	public static void main(String[] args) throws Exception {
@@ -14,9 +17,6 @@ public class CLI {
 		String[] gs;
 		String[] gr;
 		String[] ss;
-		String arg1;
-		String arg2;
-		String arg3;
 		String cmd = "";
 		while (!Objects.equals(cmd, "exit")){
 			System.out.print(nowpath + ">");//获取标准的路径
@@ -73,9 +73,9 @@ public class CLI {
 						break;
 					case "ls":
 						if (arg1.equals("-lt")) {
-							Ls.lsT(nowpath + "\\" + arg2);
+							Ls.ls(nowpath + "\\" + arg2);
 						}else if(arg1.equals("-lS")) {
-							Ls.lsS(nowpath + "\\" + arg2);
+							Ls.ls(nowpath + "\\" + arg2);
 						}else {
 							Ls.ls(nowpath + "\\" + arg1);
 						}
@@ -89,6 +89,19 @@ public class CLI {
 					case "tree":
 						Tree.tree(nowpath + "\\" + arg1);
 						break;
+					case "help":
+						System.out.println("指令一览表：大部分指令遵循linux指令规则");
+						System.out.println("复制：cp old_path new_path");
+						System.out.println("新建文件夹：mkdir path");
+						System.out.println("删除文件夹：rmdir path");
+						System.out.println("加密：");
+						System.out.println("解密：");
+						System.out.println("列出文件（文件名排序）：");
+						System.out.println("列出文件（修改日期排序）：");
+						System.out.println("列出文件（大小排序）：");
+						System.out.println("移动：");
+						System.out.println("删除：");
+						System.out.println("列出文件树：");
 					default:
 						System.out.println("未知的命令，请输入正确格式");
 				}

@@ -65,6 +65,7 @@ public class Encrypt {
         cis.close();
         is.close();
         out.close();
+        System.out.println("加密完成");
     }
 
     /**
@@ -106,6 +107,7 @@ public class Encrypt {
         cos.close();
         out.close();
         is.close();
+        System.out.println("解密完成");
     }
 
     public static String padding(String str) {
