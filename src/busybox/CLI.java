@@ -26,13 +26,10 @@ public class CLI {
 			switch (ss.length) {
 			case 4:
 				arg3 = ss[3];
-				System.out.print("333");
 			case 3:
 				arg2 = ss[2];
-				System.out.print("222");
 			case 2:
 				arg1 = ss[1];
-				System.out.print("111");
 			}
 			
 			try {
